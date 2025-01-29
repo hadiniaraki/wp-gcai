@@ -26,6 +26,4 @@
 برای مشارکت در توسعهٔ این افزونه، می‌توانید issues و pull request‌های خود را در (https://github.com/hadiniaraki/wp-gcai) ارسال کنید.
 
 ## لایسنس
-
-## License
 This project is licensed under the terms of the GNU General Public License v2 or later.
