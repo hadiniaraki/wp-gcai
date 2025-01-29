@@ -27,4 +27,5 @@
 
 ## لایسنس
 
-این پروژه تحت لایسنس MIT منتشر شده است.
+## License
+This project is licensed under the terms of the GNU General Public License v2 or later.
