@@ -45,3 +45,4 @@ function gcai_deactivate() {
     // عملیات لازم هنگام غیرفعال‌سازی
 }
 register_deactivation_hook(__FILE__, 'gcai_deactivate');
+
