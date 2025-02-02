@@ -46,3 +46,69 @@ function gcai_deactivate() {
 }
 register_deactivation_hook(__FILE__, 'gcai_deactivate');
 
+// اضافه کردن شورت‌کد برای فرم تولید مقاله
+function gcai_article_form() {
+    ob_start();  // برای گرفتن خروجی HTML
+    ?>
+    <div class="form-container">
+      <p><span class="required">*</span> فیلدهای ضروری</p><br>
+      <form method="post" action="#" onsubmit="return validateArticleForm()">
+        <?php wp_nonce_field( 'gcai_article_form', 'gcai_article_nonce' ); ?>
+        <div class="input-container">
+          <label for="subject"><span class="required">*</span>موضوع مقاله:</label>
+          <input type="text" name="subject" id="subject" required />
+        </div>
+        <div class="input-container">
+          <label for="article-tag-input"><span class="required">*</span>کلمات کلیدی:</label>
+          <div class="tags-input" id="article-tags-input">
+            <input type="text" id="article-tag-input" placeholder="کلمات کلیدی را وارد کنید" />
+            <button type="button" id="article-add-tag-button">+</button>
+          </div>
+          <input type="hidden" name="article_keywords" id="article_keywords"/>
+        </div>
+        <div class="input-container">
+          <label for="brand_name"><span class="required">*</span>نام برند:</label>
+          <input type="text" name="brand_name" id="brand_name" required />
+        </div>
+        <div class="input-container">
+          <label for="context"><span class="required">*</span>زمینه مقاله:</label>
+          <input type="text" name="context" id="context" required />
+        </div>
+        <div class="input-container">
+          <label for="writing_tone">لحن نوشتار:</label>
+          <select name="writing_tone" id="writing_tone">
+            <option value="رسمی">رسمی</option>
+            <option value="محاوره">محاوره</option>
+            <option value="دوستانه و خودمانی">دوستانه و خودمانی</option>
+            <option value="طنز">طنز</option>
+          </select>
+        </div>
+        <div class="input-container">
+          <label for="language">زبان مقاله:</label>
+          <select name="language" id="language">
+            <option value="Persian">فارسی</option>
+            <option value="English">انگلیسی</option>
+            <option value="Arabic">عربی</option>
+          </select>
+        </div>
+        <button type="submit" name="generate_article">تولید مقاله</button>
+      </form>
+    </div>
+    <?php
+    return ob_get_clean();  // بازگرداندن خروجی HTML
+}
+
+// اضافه کردن CSS به افزونه
+function gcai_enqueue_styles() {
+    wp_enqueue_style( 'gcai-style', plugin_dir_url( __FILE__ ) . 'css/styles.css' );
+}
+add_action( 'wp_enqueue_scripts', 'gcai_enqueue_styles' );
+
+// اضافه کردن JS به افزونه
+function gcai_enqueue_scripts() {
+    wp_enqueue_script( 'gcai-scripts', plugin_dir_url( __FILE__ ) . 'js/scripts.js', array('jquery'), null, true );
+}
+add_action( 'wp_enqueue_scripts', 'gcai_enqueue_scripts' );
+
+
+add_shortcode( 'gcai_article_form', 'gcai_article_form' );

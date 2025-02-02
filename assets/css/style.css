@@ -1,0 +1,641 @@
+:root {
+    /* رنگ‌های اصلی */
+    --primary-color: #5C67F2;  /* آبی روشن */
+    --background-color: #F4F4F7;  /* خاکستری بسیار روشن */
+    --text-color: #333;  /* تیره برای خوانایی بالا */
+    --accent-color: #E63946;  /* قرمز روشن برای تأکید */
+
+    /* رنگ‌های مکمل */
+    --secondary-text-color: #666;  /* خاکستری متوسط */
+    --border-color: #DDD;  /* خاکستری روشن برای حاشیه و جداکننده‌ها */
+    --sidebar-bg-color: #3b3f6b; /* رنگ پس‌زمینه منوی سمت راست */
+    --sidebar-hover-color: #4b54c6; /* رنگ هاور منوی سمت راست */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* اضافه کردن این خط برای مدیریت بهتر اندازه‌ها */
+}
+
+body {
+    direction: rtl;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+ 
+/* استایل هدر */
+header {
+    background-color: var(--background-color);
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-container .logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info p {
+    margin-left: 15px;
+    font-size: 16px;
+    color: var(--secondary-text-color);
+}
+
+
+/* استایل آیکون‌های ورود و خروج */
+.user-info a {
+    height: 10px;
+    justify-content: center;
+    margin-left: 15px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 16px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+}
+.user-info a:hover {
+    color: var(--secondary-text-color);
+    text-decoration: none;
+}
+
+.user-info i {
+    height: 100%;
+    margin-left: 5px;
+    color: var(--primary-color);
+}
+
+
+/* اضافه کردن فاصله بین آیکون و متن */
+.user-info i {
+    margin-right: 5px;
+}
+
+/* استایل برای تاریخچه درخواست‌ها */
+.tab-header{
+    display: flex;
+    margin-bottom: 15px;
+}
+.tab-link{
+    flex: 1;
+    background-color: var(--sidebar-bg-color);
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.tab-link:hover,.tab-link.active{
+    background-color: var(--sidebar-hover-color);
+}
+
+.history-container {
+    padding: 20px;
+}
+
+.history-container h2 {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#article-history-cards,#caption-history-cards, #video-script-history-cards {
+    display: none;
+    grid-template-columns: calc(33% - 10px) calc(34% - 10px) calc(33% - 10px);
+    gap: 15px; 
+}
+
+.history-tab-content > *:last-child {
+    grid-column: 1 / -1; 
+    width: 100%; 
+  }
+
+.history-tab-content.active{
+    display: grid !important;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px); /* هر کارت یک سوم عرض صفحه */
+    padding: 20px;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* افکت بالا آمدن کارت هنگام هاور */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-content h3 {
+    color: var(--primary-color);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 14px;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.card-content i {
+    margin-right: 5px;
+}
+
+.card-actions {
+    margin-top: 20px;
+}
+
+.card-actions a {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease;
+}
+
+.card-actions a:hover {
+    color: var(--primary-color);
+}
+
+.card-actions i {
+    font-size: 16px;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #4b54c6; /* رنگ کمی تیره‌تر برای افکت هاور */
+}
+
+input, select {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 4px;
+}
+
+.form-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.required {
+    color: red;
+    margin-left: 5px; /* فاصله بین متن و ستاره */
+}
+
+/* استایل برای کادر کلمات کلیدی */
+.tags-input {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    padding: 5px;
+    min-height: 40px;
+    border-radius: 4px;
+    cursor: text;
+}
+
+.tags-input .tag {
+    display: flex;
+    align-items: center;
+    background: #e0e0e0;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 2px;
+}
+
+.tags-input .tag .remove-tag {
+    margin-left: 5px;
+    cursor: pointer;
+    padding: 0 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.tags-input .tag .remove-tag:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.tags-input input {
+    border: none;
+    outline: none;
+    flex: 1;
+    min-width: 100px;
+    padding: 5px;
+}
+
+/* تنظیم نشانگر ماوس به حالت پوینتر برای آیکون حذف */
+.remove-tag {
+    cursor: pointer;
+}
+
+/* انیمیشن تغییر پس‌زمینه آیکون حذف */
+.remove-tag:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+/* استایل برای پنل کاربری و تب‌ها */
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.sidebar {
+    flex:1;
+    background-color: var(--sidebar-bg-color);
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    margin: 0 0 20px 0;
+    font-size: 1.5em;
+}
+
+.sidebar-header i {
+    display: none; 
+}
+
+.sidebar-menu {
+    display: block;
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu li a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li a.active {
+    background-color: var(--sidebar-hover-color);
+}
+
+.content {
+    flex: 4;
+    padding: 20px;
+}
+
+.tab-content {
+    display: none; /* پنهان کردن تمام فرم‌ها در ابتدا */
+}
+
+.tab-content.active {
+    display: block; /* نمایش فرم فعال */
+}
+
+/* استایل برای پیام‌های خطا */
+.error-message {
+    background-color: #ffdddd;
+    border-radius: 4px;
+    margin-top: 5px;
+    color: #d8000c;
+    font-weight: bold;
+}
+
+
+
+/* popup */
+/* Popup container - can be anything you want */
+.popup {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    text-align: center;
+  }
+  
+  /* Popup content */
+  .popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px; 
+    border-radius: 5px;
+  }
+  .popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  #search-form-container{
+    display: flex;
+    justify-content: center;
+    padding: 15px 10%;
+    margin-bottom: 5px;
+    background-color: #5c66f23f;
+  }
+  #search-form-container *{
+    height: 40px;
+    margin: 0;
+  }
+  #search-form-container input{
+    border-radius: 0 5px 5px 0;
+    border: 1px solid white !important;
+    flex:5;
+  }#search-form-container button{
+    border-radius: 5px 0 0 5px;
+    flex:1;
+  }
+
+/* user styles */
+#user-info-container div{
+    padding: 7px 0;
+    margin-bottom: 10px;
+}
+
+#user-account-info button{
+    margin:12px 0;
+}
+
+/* استایل جدول */
+#user-balance-info-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  #user-balance-info-container th, #user-balance-info-container td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #user-balance-info-container th {
+    background-color: #f1f1f1;
+    color: #555;
+  }
+
+  #user-balance-info-container td {
+    color: #333;
+  }
+
+  /* تغییر رنگ سطرهای جدول به صورت متناوب */
+  #user-balance-info-container tr:nth-child(even) {
+    background-color: #f7f7f7;
+  }
+
+  /* استایل برای سطر خالی */
+  #user-balance-info-container td[colspan="3"] {
+    text-align: center;
+    color: #999;
+  }
+
+  /* استایل برای نمایش تراکنش های مثبت و منفی */
+  #user-balance-info-container td:nth-child(1) {
+    font-weight: bold;
+  }
+
+  #user-balance-info-container td:nth-child(1) {
+
+    color: red;
+
+  }
+
+  #user-balance-info-container td:nth-child(1)[data-positive="true"] {
+    color: green;
+  }
+
+  #login-form-container,#signup-form-container{
+    height: calc(100vh - 50px);
+  }
+  #login-form-container button,#signup-form-container button{
+    margin: 15px 0;
+    width: 100%;
+  }
+
+  .pagination{
+    padding: 7px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 7px;
+  }
+
+  .step-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .step-links a{
+    color: white !important;
+    text-decoration: none;
+  }
+  .step-links a:hover{
+    color: var(--sidebar-bg-color);
+  }
+  span.current{
+    color: var(--sidebar-bg-color);
+    font-weight: 600;
+  }
+
+  @media screen and (max-width: 650px) {
+    .container{
+        display: block;
+    }
+
+    .sidebar{
+        padding: 10px 20px;
+    }
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        margin-bottom: 0;
+        
+    }
+    .sidebar-header.active{
+        margin-bottom: 15px;
+    }
+
+    .sidebar-header h2 {
+        margin: 0;
+    }
+
+    .sidebar-header i {
+        display: inline-block;
+        transition: transform 0.3s; 
+    }
+
+    .sidebar-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+
+    .sidebar-header.active i {
+        transform: rotate(180deg); 
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: var(--background-color);
+        width: 100%;
+        text-align: right;
+        padding: 20px;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .menu-container {
+        position: relative;
+    }
+
+    .nav-links.show {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+    }
+    .card {
+        width: 100%; /* در صفحات کوچک کارت‌ها کل عرض صفحه را می‌گیرند */
+    }
+    .tab-header{
+        display: block;
+    }
+
+    #article-history-cards, #caption-history-cards, #video-script-history-cards{
+        grid-template-columns: auto;
+    }
+}
+
+/* کلاس برای نمایش منو در حالت موبایل */
+.nav-active {
+    display: flex !important;
+}
