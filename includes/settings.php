@@ -25,11 +25,7 @@ function gcai_settings_page() {
         <h1><?php _e('GCAI Plugin Settings', 'gcai'); ?></h1>
         <p><?php _e('Here you can configure API settings.', 'gcai'); ?></p>
     </div>
-    <?php
-}
 
-function your_plugin_settings_page() {
-    ?>
     <div class="wrap">
         <h1>تنظیمات افزونه</h1>
 
